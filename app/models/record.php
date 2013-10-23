@@ -49,10 +49,11 @@
 			}
 			$sql = $sql.');';
 			$sql = strip_tags($sql);
-			if(!mysql_query($sql,mysql_connection::$db)){
-				return false;
+			if(mysql_query($sql,mysql_connection::$db)){
+				$params['id'] = mysql_insert_id();
+				return new $called_class($params);
 			}
-			return true;
+			return null;
 		}
 		public static function where($clause){
 			$called_class = get_called_class();
@@ -64,8 +65,6 @@
 				$arr[] = new $called_class($row);
 			}
 			return $arr;
-
-		
 		}
 		public static function all(){
 			$called_class = get_called_class();
@@ -77,6 +76,18 @@
 				$arr[] = new $called_class($row);
 			}
 			return $arr;
+		}
+
+		public static function destroy($id){
+			$called_class = get_called_class();
+			$table_name = strtolower($called_class).'s';
+			$sql = 'DELETE FROM where id ='.$id.';';
+		}
+
+		public function delete(){
+			$called_class = get_called_class();
+			$called_class::destroy($this->get_id());
+			$this->set_id(null);
 		}
 	}
 ?>
