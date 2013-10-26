@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>PHP Framework Test</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 
 	<body>
