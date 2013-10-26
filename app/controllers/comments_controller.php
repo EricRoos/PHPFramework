@@ -2,7 +2,7 @@
 	require_once($_SERVER['DOCUMENT_ROOT'].'/app/models/comment.php');		
 	require_once($_SERVER['DOCUMENT_ROOT'].'/app/models/member.php');		
 
-	switch($method){
+	switch($_GET['method']){
 		case "index":
 			$comments = Comment::all();
 		break;

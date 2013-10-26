@@ -1,4 +1,5 @@
 <?php
+	$_SERVER['DOCUMENT_ROOT'] = '/var/www';
 	require_once($_SERVER['DOCUMENT_ROOT'].'/db/database.php');
 	class Record{
 

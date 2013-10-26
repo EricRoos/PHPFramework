@@ -1,12 +1,12 @@
 <?php
 	require_once($_SERVER['DOCUMENT_ROOT'].'/app/models/member.php');		
-	switch($method){
+	switch($_GET['method']){
 		case 'index':
 			$members = Member::all();
 		break;
 
 		case 'show':
-			$id = $_GET['id'];
+			$id = $_GET['params']['id'];
 			$member = Member::find($id);
 		break;
 
