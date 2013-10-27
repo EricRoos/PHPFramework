@@ -1,6 +1,5 @@
 <?php
-  
-  abstract class Router{
+	  abstract class Router{
     protected $url_map;
     public function __construct(){
       $this->url_map = array();
