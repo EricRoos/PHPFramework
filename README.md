@@ -4,5 +4,5 @@ A MVC Framework for PHP and Apache<br/>
 Apache
 <ul>
   <li>Turn on mod rewrite: a2enmod rewrite</li>
-  <li>Setup rewrite: /[a-zA-Z0-9]\*$ ${DOCUMENT\_ROOT}/config/routes.php [L];</li>
+  <li>Setup rewrite: /[a-zA-Z0-9]*$ ${DOCUMENT_ROOT}/config/routes.php [L];</li>
 </ul>
