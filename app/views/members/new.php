@@ -1,4 +1,4 @@
-<form method="POST" action='/members/create'>
+<form method="POST" action='/members'>
 	<input id="name" name="name"/>
 	<input type="submit"/>
 </form>

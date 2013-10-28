@@ -1,9 +1,9 @@
 <?php
-	switch($method){
-		case "index":
+  switch($method){
+    case "index":
 
-		break;
+    break;
 
-	}	
+  }  
 
 ?>
