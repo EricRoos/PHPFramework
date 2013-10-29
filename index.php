@@ -18,4 +18,4 @@
     </div>
   </body>
 </html>
-<?php $mysql_connection->close_connection() ?>
+<?php mysql_instance::get_instance()->close_instance() ?>

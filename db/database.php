@@ -43,12 +43,14 @@
 
     public function select($table,$attributes){
       $sql = $this->generate_select($table,$attributes).";";
-      $results = mysqli_query($sql);
+      $results = mysqli_query($this->db_conn,$sql);
+      return $results;
     }
 
     public function select_where($table,$attributes,$where_clause){
       $sql = $this->generate_where($table,$attributes, $where_clause).";";
-      $results = mysqli_query($sql);
+      $results = mysqli_query($this->db_conn,$sql);
+      return $results;
     }
 
     function close_instance(){

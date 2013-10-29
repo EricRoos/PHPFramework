@@ -6,11 +6,9 @@
 		protected $age;
 
 	  public function __construct($params){
+      parent::__construct($params);
 	    $this->set_name($params['name']);
 			$this->set_age($params['age']);
-	    if(isset($arr['id'])){
-	      $this->set_id($arr['id']);
-	    }
 	  }
 	
   	public function get_name(){
@@ -25,8 +23,8 @@
 	    return $this->age;
 	  }
   
-  	public function set_age($agee){
-	    $this->name = $age;
+  	public function set_age($age){
+	    $this->age = $age;
 	  }
 
 
@@ -34,9 +32,4 @@
     	return Comment::where("member_id = ".$this->get_id());
 	  } 
 	}
-	$params = array();
-	$params['name'] = "Jane Doe";
-	$params['age'] = "22";
-
-	Member::create($params);
 ?>

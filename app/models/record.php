@@ -6,7 +6,8 @@
     protected $id;
 		private $db; 
 
-    public function __construct(){
+    public function __construct($params){
+       $this->set_id($params['id']);
     }
     
     public function get_id(){
@@ -21,9 +22,8 @@
     public static function find($id){
       $called_class = get_called_class();
       $table_name = strtolower(get_called_class()).'s';
-      $sql = 'SELECT * FROM '.$table_name.' WHERE id = '.$id.';';
-      $result_set = mysql_query($sql,mysql_connection::$db);
-      $arr = mysql_fetch_array($result_set);
+      $result_set = mysql_instance::get_instance()->select_where($table_name,array("*"),"id = ".$id);
+      $arr = $result_set->fetch_assoc();
       return new $called_class($arr);
     }
     protected function getVariables(){
@@ -43,10 +43,9 @@
     public static function where($clause){
       $called_class = get_called_class();
       $table_name = strtolower(get_called_class()).'s';
-      $sql = "SELECT * FROM ".$table_name." WHERE ".$clause;
-      $result_set = mysql_query($sql,mysql_connection::$db) or die("ERROR!");
+      $result_set = mysql_instance::get_instance()->select_where($table_name,array("*"),$clause);
       $arr = array();
-      while($row = mysql_fetch_array($result_set)){
+      while($row = $result_set->fetch_assoc()){
         $arr[] = new $called_class($row);
       }
       return $arr;
@@ -54,10 +53,9 @@
     public static function all(){
       $called_class = get_called_class();
       $table_name = strtolower($called_class).'s';
-      $sql = 'SELECT * FROM '.$table_name.';'; 
-      $result_set = mysql_query($sql,mysql_connection::$db) or die("ERROR!");
+      $result_set = mysql_instance::get_instance()->select($table_name,array("*"));
       $arr = array();
-      while($row = mysql_fetch_array($result_set)){
+      while($row  = $result_set->fetch_assoc()){
         $arr[] = new $called_class($row);
       }
       return $arr;
