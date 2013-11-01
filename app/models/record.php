@@ -1,12 +1,12 @@
 <?php
-  $_SERVER['DOCUMENT_ROOT'] = '/var/www';
+  $_SERVER['DOCUMENT_ROOT'] = '/var/www/PHPFramework';
   require_once($_SERVER['DOCUMENT_ROOT'].'/db/database.php');
   class Record{
 
     protected $id;
-    
+		private $db; 
+
     public function __construct(){
-    
     }
     
     public function get_id(){
@@ -32,25 +32,9 @@
     public static function create($params){
       $called_class = get_called_class();
       $table_name = strtolower(get_called_class()).'s';
-      $sql = "INSERT INTO ".$table_name."(";
-      $params_size = count($params);
-      $vars = array_keys($params); 
-      for($i = 0; $i < $params_size ; $i++){
-        $sql = $sql.$vars[$i];
-        if($i < $params_size-1){
-          $sql = $sql.',';
-        }
-      }
-      $sql = $sql.') VALUES(';
-      for($i = 0; $i < $params_size ; $i++){
-        $sql = $sql.'\''.$params[$vars[$i]].'\'';
-        if($i < $params_size-1){
-          $sql = $sql.',';
-        }
-      }
-      $sql = $sql.');';
-      $sql = strip_tags($sql);
-      if(mysql_query($sql,mysql_connection::$db)){
+   		$db = mysql_instance::get_instance(); 
+			$result = $db->insert($table_name,$params);
+	    if($result){
         $params['id'] = mysql_insert_id();
         return new $called_class($params);
       }

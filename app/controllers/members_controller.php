@@ -1,7 +1,9 @@
 <?php
   require_once($_SERVER['DOCUMENT_ROOT'].'/app/models/member.php');    
+	echo $_GET['method'];
   switch($_GET['method']){
     case 'index':
+			echo "in index";
       $members = Member::all();
     break;
 

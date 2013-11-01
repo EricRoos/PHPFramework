@@ -111,7 +111,6 @@
       $router->define_get();
     break;
   }
-
   $path = $_SERVER['REQUEST_URI'];
   $uri_tokens = explode('/',$path);
   $requested_model = $uri_tokens[1];
